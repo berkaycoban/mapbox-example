@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapbox Example</title>
+
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="map" style="width: 400px; height: 300px;"></div>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
+    <script src="token.js"></script>
+    <script>
+      // mapboxgl.accessToken =
+      // "accessTokenGelecek";
+
+      let v1 = new mapboxgl.LngLat(27.1220736, 38.4565248);
+      let map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: v1,
+        zoom: 8,
+      });
+
+      let marker = new mapboxgl.Marker().setLngLat(v1).addTo(map);
+
+      console.log(ll.lng);
+    </script>
+  </body>
+</html>
