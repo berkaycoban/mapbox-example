@@ -9,9 +9,22 @@
       href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css"
       rel="stylesheet"
     />
+
+    <style>
+      span {
+        background-color: #222;
+        color: #eee;
+        padding: 20px;
+        display: inline-block;
+      }
+    </style>
   </head>
   <body>
-    <div id="map" style="width: 400px; height: 300px;"></div>
+    <div
+      id="map"
+      onclick="mapsSelector()"
+      style="width: 400px; height: 300px;"
+    ></div>
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
     <script src="token.js"></script>
@@ -19,7 +32,10 @@
       // mapboxgl.accessToken =
       // "accessTokenGelecek";
 
-      let v1 = new mapboxgl.LngLat(27.1220736, 38.4565248);
+      let lat = 38.4565248;
+      let lng = 27.1220736;
+
+      let v1 = new mapboxgl.LngLat(lng, lat);
       let map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/mapbox/streets-v11",
@@ -28,8 +44,25 @@
       });
 
       let marker = new mapboxgl.Marker().setLngLat(v1).addTo(map);
+    </script>
 
-      console.log(ll.lng);
+    <script>
+      // Open native map app
+      let geocoords = lat + "," + lng;
+      function mapsSelector() {
+        if (
+          /* if we're on iOS, open in Apple Maps */
+          navigator.platform.indexOf("iPhone") != -1 ||
+          navigator.platform.indexOf("iPod") != -1 ||
+          navigator.platform.indexOf("iPad") != -1 ||
+          navigator.platform.indexOf("MacIntel") != -1
+        ) {
+          window.open("maps://?q=" + geocoords, "_system");
+        } else {
+          /* else use Google */
+          window.open("geo:0,0?q=" + geocoords, "_system");
+        }
+      }
     </script>
   </body>
 </html>
